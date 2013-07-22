@@ -1,4 +1,4 @@
-## REALLY simple tool to mock MySQL responses
+## REALLY BASIC tool to mock MySQL responses
 
 I needed a simple response mock for the [github.com/ziutek/mymysql/mysql](github.com/ziutek/mymysql/mysql) responses. Using [gomock](http://godoc.org/code.google.com/p/gomock/gomock) seamed like overkill.
 

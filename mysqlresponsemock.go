@@ -1,3 +1,11 @@
+// REALLY Basic primitives to mock github.com/ziutek/mymysql responses
+//
+// Mysqlresponsemock (c) Rafal Zajac <rzajac@gmail.com>
+// https://github.com/rzajac/mysqlresponsemock
+//
+// Licensed under the MIT license
+
+// REALLY Basic primitives to mock github.com/ziutek/mymysql responses
 package mysqlresponsemock
 
 import (
