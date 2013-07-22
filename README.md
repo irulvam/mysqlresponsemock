@@ -1,6 +1,6 @@
 ## REALLY simple tool to mock MySQL responses
 
-I needed a simple response mock for the *github.com/ziutek/mymysql/mysql* responses. Using [gomock](http://godoc.org/code.google.com/p/gomock/gomock) seamed like overkill.
+I needed a simple response mock for the [github.com/ziutek/mymysql/mysql](github.com/ziutek/mymysql/mysql) responses. Using [gomock](http://godoc.org/code.google.com/p/gomock/gomock) seamed like overkill.
 
 ## Example usage
 
@@ -30,4 +30,5 @@ func Test_initFromDb(t *testing.T) {
 ## License
 
 Released under the MIT License.
+
 Mysqlresponsemock (c) Rafal Zajac <rzajac@gmail.com>
