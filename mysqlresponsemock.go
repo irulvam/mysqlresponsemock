@@ -23,7 +23,7 @@ type ResultMock struct {
 //
 // Example:
 //
-//     row, resp := NewResponseMock("Id", 1, "Name": "Tom")
+//     row, resp := NewResponseMock("Id", 1, "Name", "Tom")
 //
 func NewResponseMock(v ...interface{}) (mysql.Row, mysql.Result) {
 
@@ -42,7 +42,13 @@ func NewResponseMock(v ...interface{}) (mysql.Row, mysql.Result) {
 			panic("Columns must be strings")
 		}
 		colNames = append(colNames, colName)
-		colValues = append(colValues, v[i+1])
+
+		switch v[i+1].(type) {
+		case int:
+			colValues = append(colValues, int32(v[i+1].(int)))
+		default:
+			colValues = append(colValues, v[i+1])
+		}
 	}
 
 	return colValues, NewResultMock(colNames)

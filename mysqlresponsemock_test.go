@@ -1,13 +1,8 @@
-## REALLY BASIC tool to mock MySQL responses
-
-I needed a simple mock for the [github.com/ziutek/mymysql/mysql](github.com/ziutek/mymysql/mysql) responses. Using [gomock](http://godoc.org/code.google.com/p/gomock/gomock) seamed like overkill.
-
-## Example usage
-
-```go
+package mysqlresponsemock
 
 import (
 	"github.com/rzajac/assert/assert"
+	"testing"
 )
 
 func Test_NewResponseMock(t *testing.T) {
@@ -21,10 +16,3 @@ func Test_NewResponseMock(t *testing.T) {
 	assert.Equal(t, "Tom", row.Str(1))
 	assert.Equal(t, 123.12, row.Float(2))
 }
-```
-
-## License
-
-Released under the MIT License.
-
-Mysqlresponsemock (c) Rafal Zajac <rzajac@gmail.com>
