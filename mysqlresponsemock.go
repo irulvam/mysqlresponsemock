@@ -46,6 +46,9 @@ func NewResponseMock(v ...interface{}) (mysql.Row, mysql.Result) {
 		switch v[i+1].(type) {
 		case int:
 			colValues = append(colValues, int32(v[i+1].(int)))
+		case uint:
+			colValues = append(colValues, uint32(v[i+1].(uint)))
+
 		default:
 			colValues = append(colValues, v[i+1])
 		}

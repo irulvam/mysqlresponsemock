@@ -23,6 +23,14 @@ func Test_NewResponseMock(t *testing.T) {
 }
 ```
 
+## Run tests
+
+    go test github.com/rzajac/mysqlresponsemock
+
+## Installation
+
+    go get github.com/rzajac/mysqlresponsemock
+
 ## License
 
 Released under the MIT License.
