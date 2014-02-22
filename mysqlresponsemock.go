@@ -12,7 +12,7 @@ import (
 	"github.com/ziutek/mymysql/mysql"
 )
 
-// The structure is coppied from the original code
+// ResultMock is coppied from the original code.
 type ResultMock struct {
 	Field_count int
 	Fieldsf     []*mysql.Field // Fields table
@@ -25,7 +25,7 @@ type ResultMock struct {
 //
 //     row, resp := NewResponseMock("Id", 1, "Name", "Tom")
 //
-func NewResponseMock(v ...interface{}) (mysql.Row, mysql.Result) {
+func NewResponseMock(v ...interface{}) (mysql.Row, *ResultMock) {
 
 	if len(v)%2 != 0 {
 		panic("Number of arguments must be even")
@@ -42,19 +42,25 @@ func NewResponseMock(v ...interface{}) (mysql.Row, mysql.Result) {
 			panic("Columns must be strings")
 		}
 		colNames = append(colNames, colName)
-
-		switch v[i+1].(type) {
-		case int:
-			colValues = append(colValues, int32(v[i+1].(int)))
-		case uint:
-			colValues = append(colValues, uint32(v[i+1].(uint)))
-
-		default:
-			colValues = append(colValues, v[i+1])
-		}
+		colValues = AddColValue(colValues, v[i+1])
 	}
 
 	return colValues, NewResultMock(colNames)
+}
+
+// AddColValue adds column value to the end of the mocked mysql.Row.
+func AddColValue(colValues []interface{}, v interface{}) []interface{} {
+	switch v.(type) {
+	case int:
+		colValues = append(colValues, int32(v.(int)))
+	case uint:
+		colValues = append(colValues, uint32(v.(uint)))
+
+	default:
+		colValues = append(colValues, v)
+	}
+
+	return colValues
 }
 
 // NewResultMock mocks mysql.Result
@@ -68,6 +74,12 @@ func NewResultMock(columns []string) *ResultMock {
 		rm.Fc_map[colName] = idx
 	}
 	return rm
+}
+
+// AddColumn adds one more column to the mocked mysql.Result.
+func (res *ResultMock) AddColumn(colName string) {
+	res.Fc_map[colName] = res.Field_count
+	res.Field_count++
 }
 
 // Returns index for given name or -1 if field of that name doesn't exist
